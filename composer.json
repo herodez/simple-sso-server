@@ -27,11 +27,5 @@
     "psr-4": {
       "Optime\\SimpleSsoServerBundle\\": ""
     }
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/herodez/simple-sso"
-    }
-  ]
+  }
 }
