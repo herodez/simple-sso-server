@@ -4,15 +4,15 @@ services:
     autowire: true
     public: false
   simple_sso_server.generator.otp:
-    class: Optime\Component\SingleSignOn\SimpleSso\OneTimePassword\Service\OneTimePasswordGenerator
+    class: Optime\SimpleSso\OneTimePassword\Service\OneTimePasswordGenerator
     autowire: true
     public: false
   simple_sso_server.security.public_password_checker:
-    class: Optime\Component\SingleSignOn\SimpleSso\Security\PublicPasswordChecker
+    class: Optime\SimpleSso\Security\PublicPasswordChecker
     autowire: true
     public: false
   simple_sso_server.default_application_repository:
-    class: Optime\Component\SingleSignOn\SimpleSso\Application\InMemoryApplicationRepository
+    class: Optime\SimpleSso\Application\InMemoryApplicationRepository
     autowire: true
     arguments: ["%simple_sso_server.applications%"]
     public: false
@@ -31,13 +31,13 @@ services:
     arguments: ["SimpleSsoServerBundle:OneTimePassword"]
     public: false
   simple_sso_server.use_case.create_login_otp:
-    class: Optime\Component\SingleSignOn\SimpleSso\UseCase\CreateLoginOtpUseCase
+    class: Optime\SimpleSso\UseCase\CreateLoginOtpUseCase
     autowire: true
   simple_sso_server.use_case.get_credentials:
-    class: Optime\Component\SingleSignOn\SimpleSso\UseCase\GetCredentialsUseCase
+    class: Optime\SimpleSso\UseCase\GetCredentialsUseCase
     autowire: true
   simple_sso_server.use_case.verify_active_session:
-    class: Optime\Component\SingleSignOn\SimpleSso\UseCase\VerifyActiveSessionUseCase
+    class: Optime\SimpleSso\UseCase\VerifyActiveSessionUseCase
     autowire: true
   simple_sso_server.security.listener.switch_user:
     class: Optime\SimpleSsoServerBundle\Security\EventListener\SwitchUserListener

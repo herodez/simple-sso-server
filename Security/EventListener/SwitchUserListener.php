@@ -2,7 +2,7 @@
 
 namespace Optime\SimpleSsoServerBundle\Security\EventListener;
 
-use Optime\Component\SingleSignOn\SimpleSso\OneTimePassword\Service\OneTimePasswordCleaner;
+use Optime\SimpleSso\OneTimePassword\Service\OneTimePasswordCleaner;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Http\Event\SwitchUserEvent;
 

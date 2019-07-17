@@ -7,7 +7,7 @@ use AppBundle\Entity\Profile;
 use AppBundle\Entity\User;
 use AppBundle\Model\CompanyUserData;
 use AppBundle\Security\TokenUtils;
-use Optime\Component\SingleSignOn\SimpleSso\Security\AuthDataResolverInterface;
+use Optime\SimpleSso\Security\AuthDataResolverInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\InsufficientAuthenticationException;
 use Symfony\Component\Security\Core\Role\RoleInterface;

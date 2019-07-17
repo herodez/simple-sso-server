@@ -2,7 +2,7 @@
 
 namespace Optime\SimpleSsoServerBundle\DependencyInjection;
 
-use Optime\Component\SingleSignOn\SimpleSso\Security\AuthDataResolverInterface;
+use Optime\SimpleSso\Security\AuthDataResolverInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;

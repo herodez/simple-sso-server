@@ -10,7 +10,7 @@
 
 namespace Optime\SimpleSsoServerBundle\Security\EventListener;
 
-use Optime\Component\SingleSignOn\SimpleSso\OneTimePassword\Service\OneTimePasswordCleaner;
+use Optime\SimpleSso\OneTimePassword\Service\OneTimePasswordCleaner;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

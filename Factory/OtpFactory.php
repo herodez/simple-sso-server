@@ -3,7 +3,7 @@
 namespace Optime\SimpleSsoServerBundle\Factory;
 
 use Optime\SimpleSsoServerBundle\Entity\OneTimePassword;
-use Optime\Component\SingleSignOn\SimpleSso\OneTimePassword\OneTimePasswordFactoryInterface;
+use Optime\SimpleSso\OneTimePassword\OneTimePasswordFactoryInterface;
 
 /**
  * @author Manuel Aguirre <programador.manuel@gmail.com>
