@@ -47,3 +47,7 @@ services:
       - ""
     tags:
       - { name: kernel.event_listener, event: security.switch_user, method: onSwitchUser }
+
+  Optime\SimpleSsoServerBundle\Controller\SecurityController:
+    autowire: true
+    autoconfigure: true
