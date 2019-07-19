@@ -30,16 +30,5 @@ class SimpleSsoServerExtension extends Extension
         $container->setParameter('simple_sso_server.applications', $config['applications']);
         $container->setAlias('simple_sso_server.application_repository', $config['application_repository_service']);
         $container->setAlias('simple_sso_server.auth_data_resolver', $config['auth_data_resolver_service']);
-
-        $definition = $container->findDefinition($config['auth_data_resolver_service']);
-
-        $authDataResolverInterface = AuthDataResolverInterface::class;
-        $reflection = new \ReflectionClass($definition->getClass());
-
-        if (!$reflection->implementsInterface($authDataResolverInterface)) {
-            throw new InvalidArgumentException(sprintf(
-                'El servicio "%s" debe implementar "%s"', $definition->getClass(), $authDataResolverInterface
-            ));
-        }
     }
 }

@@ -40,7 +40,7 @@ TEXT;
                     ->cannotBeEmpty()
                 ->end()
                 ->scalarNode('auth_data_resolver_service')
-                    ->defaultValue('simple_sso_server.loyalty_auth_data_resolver')
+                    ->defaultValue('simple_sso_server.security.basic_auth_data_resolver')
                     ->cannotBeEmpty()
                 ->end()
                 ->arrayNode('applications')

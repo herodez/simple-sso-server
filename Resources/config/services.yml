@@ -1,53 +1,55 @@
 services:
   simple_sso_server.factory.otp:
     class: Optime\SimpleSsoServerBundle\Factory\OtpFactory
-    autowire: true
-    public: false
   simple_sso_server.generator.otp:
     class: Optime\SimpleSso\OneTimePassword\Service\OneTimePasswordGenerator
-    autowire: true
-    public: false
+    arguments:
+      - "@simple_sso_server.repository.otp"
+      - "@simple_sso_server.factory.otp"
   simple_sso_server.security.public_password_checker:
     class: Optime\SimpleSso\Security\PublicPasswordChecker
-    autowire: true
-    public: false
+    arguments:
+      - "@simple_sso_server.default_application_repository"
   simple_sso_server.default_application_repository:
     class: Optime\SimpleSso\Application\InMemoryApplicationRepository
-    autowire: true
     arguments: ["%simple_sso_server.applications%"]
-    public: false
-  simple_sso_server.loyalty_auth_data_resolver:
-    class: Optime\SimpleSsoServerBundle\Security\LoyaltyAuthDataResolver
-    arguments:
-      - "@app.secutiry.token_utils"
-      - "@app.company_user_data"
-    public: false
   simple_sso_server.security.listener.logout:
     class: Optime\SimpleSsoServerBundle\Security\EventListener\LogoutListener
-    autowire: true
+    arguments:
+      - "@simple_sso_server.cleaner.otp"
   simple_sso_server.repository.otp:
     class: Optime\SimpleSsoServerBundle\Entity\OneTimePasswordRepository
     factory: ["@doctrine.orm.entity_manager", "getRepository"]
     arguments: ["SimpleSsoServerBundle:OneTimePassword"]
-    public: false
   simple_sso_server.use_case.create_login_otp:
     class: Optime\SimpleSso\UseCase\CreateLoginOtpUseCase
-    autowire: true
+    arguments:
+      - "@simple_sso_server.generator.otp"
+      - "@simple_sso_server.auth_data_resolver"
+    public: true
+  simple_sso_server.cleaner.otp:
+    class: Optime\SimpleSso\OneTimePassword\Service\OneTimePasswordCleaner
+    arguments:
+      - "@simple_sso_server.repository.otp"
   simple_sso_server.use_case.get_credentials:
     class: Optime\SimpleSso\UseCase\GetCredentialsUseCase
-    autowire: true
+    arguments:
+      - "@simple_sso_server.repository.otp"
+      - "@simple_sso_server.security.public_password_checker"
+    public: true
   simple_sso_server.use_case.verify_active_session:
     class: Optime\SimpleSso\UseCase\VerifyActiveSessionUseCase
-    autowire: true
+    arguments:
+      - "@simple_sso_server.repository.otp"
+      - "@simple_sso_server.security.public_password_checker"
+    public: true
   simple_sso_server.security.listener.switch_user:
     class: Optime\SimpleSsoServerBundle\Security\EventListener\SwitchUserListener
-    autowire: true
     arguments:
       - "@security.token_storage"
-      - ""
+      - "@simple_sso_server.cleaner.otp"
     tags:
       - { name: kernel.event_listener, event: security.switch_user, method: onSwitchUser }
-
-  Optime\SimpleSsoServerBundle\Controller\SecurityController:
-    autowire: true
-    autoconfigure: true
+  simple_sso_server.security.basic_auth_data_resolver:
+    class: Optime\SimpleSsoServerBundle\Security\BasicAuthDataResolver
+    arguments: ['@security.token_storage']
