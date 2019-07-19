@@ -62,7 +62,6 @@ class BasicAuthDataResolver implements AuthDataResolverInterface
     private function userToArray(UserInterface $user)
     {
         return [
-            'id' => $user->getId(),
             'username' => $user->getUsername(),
         ];
     }
