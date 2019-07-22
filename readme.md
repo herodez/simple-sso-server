@@ -49,12 +49,19 @@ return [
     Optime\SimpleSsoClientBundle\SimpleSsoServerBundle::class => ['all' => true]
 ];
 ```
-and register the bundle routes configuration on your **routing.yaml** file.
+then register the bundle routes configuration on your **routing.yaml** file
 ```yaml
 simple_sso_server:
     resource: "@SimpleSsoServerBundle/Controller/"
     type:     annotation
     prefix:   /
+```
+
+finally add the logout handler. 
+```yaml
+logout:
+  ...
+  handlers: ["simple_sso_server.security.listener.logout"]
 ```
 
 ### Configuration
